@@ -1,0 +1,59 @@
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = [
+    "setuptools<60.0",
+    "wheel",
+
+    # use oldest-supported-numpy which provides the oldest numpy version with
+    # wheels on PyPI
+    #
+    # see: https://github.com/scipy/oldest-supported-numpy/blob/main/setup.cfg
+    "oldest-supported-numpy; python_version!='3.10' or platform_system!='Windows' or platform_python_implementation=='PyPy'",
+    # For CPython 3.10 under Windows, SciPy requires NumPy 1.22.3 while the
+    # oldest supported NumPy is defined as 1.21.6. We therefore need to force
+    # it for this specific configuration. For details, see
+    # https://github.com/scipy/scipy/blob/c58b608c83d30800aceee6a4dab5c3464cb1de7d/pyproject.toml#L38-L41
+    "numpy==1.22.3; python_version=='3.10' and platform_system=='Windows' and platform_python_implementation != 'PyPy'",
+
+    "scipy>=1.3.2",
+]
+
+[tool.black]
+line-length = 155
+target_version = ['py38', 'py39', 'py310']
+preview = true
+exclude = '''
+/(
+    \.eggs         # exclude a few common directories in the
+  | \.git          # root of the project
+  | \.mypy_cache
+  | \.vscode
+  | build
+  | dist
+  | doc/tutorial
+  | doc/_build
+  | doc/auto_examples
+  | sklearn/externals
+  | asv_benchmarks/env
+)/
+'''
+
+[tool.pytest.ini_options]
+addopts = "--cov=maskable_recurrent_ppo --cov-report=xml --cov-report=term-missing --cov-config=setup.cfg --durations=10"
+testpaths = [
+    "tests",
+]
+
+[tool.mypy]
+mypy_path = "src"
+check_untyped_defs = true
+disallow_any_generics = true
+ignore_missing_imports = true
+no_implicit_optional = true
+show_error_codes = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+no_implicit_reexport = true
