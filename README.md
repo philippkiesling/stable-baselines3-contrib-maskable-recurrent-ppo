@@ -3,5 +3,5 @@ Combination of Maskable PPO and Recurrent PPO based on the sb3-contrib repositor
 
 *Please note*: This repository is currently under construction. Therefore not all functionalities from sb3 are supported.
 
-#### 0.3. Install package batterytrading with pip in editable mode
+#### 0.3. Install package with pip in editable mode
 ```pip install -e .```
