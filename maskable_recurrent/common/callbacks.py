@@ -5,7 +5,7 @@ The EvalCallbackActionMask is based on the original EvalCallback from stable_bas
 """
 from stable_baselines3.common.callbacks import EvalCallback
 from sb3_contrib.common.maskable.evaluation import evaluate_policy as evaluate_policy_mlp
-from maskable_recurrent.common import evaluate_policy as evaluate_policy_recurrent
+from maskable_recurrent.common.evaluation import evaluate_policy as evaluate_policy_recurrent
 from stable_baselines3.common.vec_env import sync_envs_normalization
 import numpy as np
 import os
