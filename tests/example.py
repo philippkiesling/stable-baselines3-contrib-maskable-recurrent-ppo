@@ -6,14 +6,14 @@ from maskable_recurrent.ppo_mask_recurrent import MaskableRecurrentActorCriticPo
 
 env = InvalidActionEnvDiscrete(dim=80, n_invalid_actions=60)
 model = MaskableRecurrentPPO(MaskableRecurrentActorCriticPolicy, env, gamma=0.4, seed=32, verbose=1)
-model.learn(5000)
+model.learn(100)
 
 evaluate_policy(model, env, n_eval_episodes=20, warn=False)
 
-#model.save("ppo_mask")
+model.save("ppo_mask")
 del model # remove to demonstrate saving and loading
 
-#model = MaskableRecurrentPPO.load("ppo_mask")
+model = MaskableRecurrentPPO.load("ppo_mask")
 
 obs = env.reset()
 while True:
