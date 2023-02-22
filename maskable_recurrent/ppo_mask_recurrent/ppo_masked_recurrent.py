@@ -164,7 +164,7 @@ class MaskableRecurrentPPO(OnPolicyAlgorithm):
         self.normalize_advantage = normalize_advantage
         self.target_kl = target_kl
         self._last_lstm_states = None
-        self.action_dist = make_masked_proba_distribution(env.action_space)
+        #self.action_dist = make_masked_proba_distribution(env.action_space)
         if _init_setup_model:
             self._setup_model()
 
@@ -350,6 +350,8 @@ class MaskableRecurrentPPO(OnPolicyAlgorithm):
         callback.on_rollout_end()
 
         return True
+
+
 
     def train(self) -> None:
         """
