@@ -1,47 +1,20 @@
-from typing import Any, Dict, List, Optional, Tuple, Type, Union
-
-import gym
-import numpy as np
-import torch as th
+from typing import List
 from stable_baselines3.common.distributions import Distribution
 from stable_baselines3.common.policies import ActorCriticPolicy
 from stable_baselines3.common.torch_layers import (
     BaseFeaturesExtractor,
-    CombinedExtractor,
     FlattenExtractor,
     MlpExtractor,
-    NatureCNN,
 )
-from stable_baselines3.common.type_aliases import Schedule
 from stable_baselines3.common.utils import zip_strict
 from torch import nn
-
 from sb3_contrib.common.recurrent.type_aliases import RNNStates
 from sb3_contrib.common.maskable.distributions import MaskableDistribution, make_masked_proba_distribution
-import sys
-import time
-import warnings
-from collections import deque
 from typing import Any, Dict, Optional, Tuple, Type, TypeVar, Union
-
 import gym
 import numpy as np
 import torch as th
-from gym import spaces
-from stable_baselines3.common import utils
-from stable_baselines3.common.buffers import RolloutBuffer
-from stable_baselines3.common.callbacks import BaseCallback, CallbackList, ConvertCallback, ProgressBarCallback
-from stable_baselines3.common.on_policy_algorithm import OnPolicyAlgorithm
-from stable_baselines3.common.policies import BasePolicy
 from stable_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
-from stable_baselines3.common.utils import explained_variance, get_schedule_fn, obs_as_tensor, safe_mean
-from stable_baselines3.common.vec_env import VecEnv
-from torch.nn import functional as F
-
-from sb3_contrib.common.maskable.buffers import MaskableDictRolloutBuffer, MaskableRolloutBuffer
-from sb3_contrib.common.maskable.policies import MaskableActorCriticPolicy
-from sb3_contrib.common.maskable.utils import get_action_masks, is_masking_supported
-from sb3_contrib.ppo_mask.policies import CnnPolicy, MlpPolicy, MultiInputPolicy
 
 class MaskableRecurrentActorCriticPolicy(ActorCriticPolicy):
     """

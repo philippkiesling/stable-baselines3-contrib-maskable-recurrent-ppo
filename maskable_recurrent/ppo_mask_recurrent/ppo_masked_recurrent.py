@@ -1,26 +1,8 @@
-import sys
-import time
 from copy import deepcopy
-from typing import Any, Dict, Optional, Type, TypeVar, Union
-
-import gym
-import numpy as np
-import torch as th
-from gym import spaces
-from stable_baselines3.common.buffers import RolloutBuffer
-from stable_baselines3.common.callbacks import BaseCallback
-from stable_baselines3.common.on_policy_algorithm import OnPolicyAlgorithm
-from stable_baselines3.common.policies import BasePolicy
-from stable_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
-from stable_baselines3.common.utils import explained_variance, get_schedule_fn, obs_as_tensor, safe_mean
-from stable_baselines3.common.vec_env import VecEnv
-
-from sb3_contrib.common.recurrent.buffers import RecurrentDictRolloutBuffer, RecurrentRolloutBuffer
 from sb3_contrib.common.recurrent.policies import RecurrentActorCriticPolicy
 from sb3_contrib.common.recurrent.type_aliases import RNNStates
 from sb3_contrib.ppo_recurrent.policies import CnnLstmPolicy, MlpLstmPolicy, MultiInputLstmPolicy
 from maskable_recurrent.common.buffers import MaskableRecurrentRolloutBufferSamples, MaskableRecurrentDictRolloutBuffer, MaskableRecurrentRolloutBuffer
-from typing import Any, Dict, List, Optional, Tuple, Type, Union
 from maskable_recurrent.ppo_mask_recurrent.maskable_recurrent_policies import MaskableRecurrentActorCriticPolicy
 import sys
 import time
@@ -40,13 +22,7 @@ from stable_baselines3.common.policies import BasePolicy
 from stable_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
 from stable_baselines3.common.utils import explained_variance, get_schedule_fn, obs_as_tensor, safe_mean
 from stable_baselines3.common.vec_env import VecEnv
-from torch.nn import functional as F
-
-from sb3_contrib.common.maskable.buffers import MaskableDictRolloutBuffer, MaskableRolloutBuffer
-from sb3_contrib.common.maskable.policies import MaskableActorCriticPolicy
 from sb3_contrib.common.maskable.utils import get_action_masks, is_masking_supported
-from sb3_contrib.ppo_mask.policies import CnnPolicy, MlpPolicy, MultiInputPolicy
-from sb3_contrib.common.maskable.distributions import MaskableDistribution, make_masked_proba_distribution
 
 MaskableRecurrentPPOSelf = TypeVar("MaskableRecurrentPPOSelf", bound="MaskableRecurrentPPO")
 import warnings
